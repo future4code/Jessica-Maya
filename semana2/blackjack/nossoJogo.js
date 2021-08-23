@@ -11,7 +11,7 @@
  * 
  */
 
-// console.log("Boas vindas ao jogo de Blackjack!")
+console.log("Boas vindas ao jogo de Blackjack!")
 
 function somarCartas(carta1, carta2) {
     const soma = carta1 + carta2
