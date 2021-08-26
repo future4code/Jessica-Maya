@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Controle de Estoque</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -20,42 +21,43 @@
         <a href="http://127.0.0.1:5500/ctrl-estoque.html">Controle de Estoque</a>
         <a href="http://127.0.0.1:5500/add-produto.html">Adicionar Produto</a>
         <a href="http://127.0.0.1:5500/funcionarios.html">Funcionários</a>
+        <a href="http://127.0.0.1:5500/pagina-de-vendas.html">Carrinho</a>
     </div>
 
     <h2>Controle de Estoque</h2>
 
-    <table>
+    <table class="table-estoque">
         <tr>
             <th>Foto</th>
             <th>Descrição</th>
-            <th>Preço (R$)</th>
+            <th class="th-estoque-infor">Preço (R$)</th>
             <th>Quantidade disponível</th>
         </tr>
 
         <tr>
             <td><img src="img/blusadetalhesazul.jpg" alt="Blusa azul com detalhes" /></td>
-            <td><b> Blusa Azul com detalhes</b></td>
+            <td> Blusa Azul com detalhes</td>
             <td> R$ 65,00</td>
             <td> 5 unidades</td>
         </tr>
 
         <tr>
             <td><img src="img/conjuntoblusabrancaeshortmarrom.jpg" alt="Conjunto blusa branca com short" /></td>
-            <td> <b>Conjunto delicat</b> </td>
+            <td>Conjunto delicat</td>
             <td> R$ 150,00 </td>
             <td> 3 unidades </td>
         </tr>
 
         <tr>
             <td><img src="./img/conjuntoblusaeshort.jpg" alt="Conjunto regata branca com short abacaxi" /></td>
-            <td> <b>Conjunto Verão com detalhes</b> </td>
+            <td>Conjunto Verão com detalhes</td>
             <td> R$ 98,00 </td>
             <td> 7 unidades </td>
         </tr>
 
         <tr>
             <td><img src="./img/blusavinhomangacurta.jpg" alt="Conjunto blusa vinho com short jeans" /></td>
-            <td><b> Conjunto Amei Vou Usar</b> </td>
+            <td>Conjunto Amei Vou Usar</td>
             <td> R$ 80,00 </td>
             <td> 6 unidades </td>
         </tr>
@@ -63,7 +65,7 @@
         <!-- Crie mais uma linha desta tabela abaixo \/ -->
         <tr>
             <td><img src="./img/conjunto_sabadoubb.jpg" alt="Conjunto cropet preto com short jeans e blusa manga transparente" /></td>
-            <td><b>Conjunto Sabadou</b> </td>
+            <td>Conjunto Sabadou</td>
             <td> R$ 130,00 </td>
             <td> 4 unidades</td>
         </tr>
