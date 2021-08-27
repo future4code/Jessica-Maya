@@ -1,0 +1,104 @@
+                * {
+                    background-color: rgb(228, 169, 169)
+                }
+                
+                h1 {
+                    font-family: 'Courier New', Courier, monospace;
+                    color: rgb(239, 233, 241);
+                    text-align: center;
+                    margin: 2em;
+                    background-color: rgb(146, 15, 113);
+                }
+                
+                a {
+                    text-align: center;
+                    margin-top: 20pt;
+                    font-size: 19px;
+                    padding: 10px;
+                    color: midnightblue;
+                    display: block
+                }
+                
+                img {
+                    width: 400px;
+                    height: 400px;
+                    text-align: center;
+                    display: inline-block;
+                    margin-left: 25px;
+                    border-style: double;
+                }
+                
+                .quemsou {
+                    margin-top: 0;
+                    font-size: 22px;
+                    padding: 2px;
+                    color: midnightblue;
+                    display: inline-block
+                }
+                
+                h2 {
+                    font-family: 'Courier New', Courier, monospace;
+                    margin-top: 13px;
+                    padding: 12px;
+                    font-size: 30px;
+                }
+                
+                ol {
+                    font-size: large;
+                    font-family: 'Courier New', Courier, monospace;
+                    margin: 5em;
+                }
+                
+                .tabelas {
+                    height: 20em;
+                    margin: 0 auto;
+                    background-color: cyan;
+                    color: black;
+                    width: 60em;
+                    text-align: center;
+                }
+                
+                button {
+                    border-width: 1px;
+                    margin: 0 auto;
+                    font-size: 15px;
+                    border-color: brown;
+                    color: aliceblue
+                }
+                
+                .listas {
+                    margin: 2em 2em;
+                    font-size: 20px;
+                    padding: 12px;
+                    color: cyan;
+                }
+                
+                .textos {
+                    font-size: 20px;
+                    padding: 22px;
+                    margin: 0 auto;
+                }
+                
+                .black {
+                    display: inline-block;
+                    font-size: 30px;
+                    text-align: center;
+                }
+                
+                .linkprojeto {}
+                
+                #inicial {
+                    border-radius: 50%;
+                    width: 200px;
+                    height: 200px;
+                    text-align: center;
+                    margin-top: 20pt;
+                    font-size: 19px;
+                    padding: 10px;
+                }
+                
+                h3 {
+                    font-size: 30px;
+                    padding: 10px;
+                    text-align: start;
+                }
