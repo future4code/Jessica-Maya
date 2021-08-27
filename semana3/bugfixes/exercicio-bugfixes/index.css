@@ -19,6 +19,11 @@ h2 {
 input {
     height: 20px;
     width: 500px;
+    border-style: solid;
+    border-bottom-width: 3px;
+    /* border-rigth-width: 0; */
+    border-top-width: 0;
+    border-left-width: 0;
 }
 
 button:focus {
@@ -26,7 +31,7 @@ button:focus {
 }
 
 img {
-    width: 100px;
+    width: 60px;
 }
 
 div>p:first-child {
@@ -34,7 +39,7 @@ div>p:first-child {
 }
 
 div img {
-    background: black;
+    background: white;
 }
 
 .botao-amarelo {
@@ -47,16 +52,19 @@ div img {
 }
 
 .botao-amarelo:hover {
-    background-color: #c44f00;
+    background-color: #635a3d;
+
 }
 
 .container {
     height: 500px;
     text-align: center;
+    
 }
 
 .icone {
     height: 15px;
+    width: 20px
 }
 
 
@@ -67,15 +75,18 @@ div img {
   **/
 
 #container-de-descricao {
-    padding-top: 200px;
-    text-align: center;
+    
     background-color: #2274a5;
     color: white;
-    font-size: large;
+    padding-top: 100px;
+    
 }
+
 
 #container-de-descricao>ol {
     padding: 15px 0px;
+    text-align: center;
+    
 
 }
 
@@ -104,6 +115,9 @@ div:last-child {
 
 table {
     width: 60%;
+    margin: auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
 }
 
 td button {
@@ -117,6 +131,7 @@ td button {
 .container-do-search {
     margin-top: 20px;
     height: 100px;
+   
 }
 
 
@@ -130,11 +145,12 @@ td button {
     font-size: 12px;
     color: black;
     text-align: center;
+   
     
     
 }
 
 #back-button:hover {
-    background-color: #635a3d;
+    background-color: #635a3d;   
     
 }
