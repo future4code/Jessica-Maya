@@ -1,0 +1,204 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.pagina-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+header {
+    display: flex;
+    background-color: mediumvioletred;
+    justify-content: space-between;
+    height: 40px;
+    margin: 0;
+    align-items: center;
+    padding: 10px;
+    font-size: 20px;
+}
+
+button {
+    width: 60px;
+    height: 20px;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+}
+
+nav ul {
+    background-color: #f2d0e0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    flex-grow: 1;
+    position: relative;
+    height: 100%;
+    width: 300px;
+    position: relative
+}
+
+li {
+    height: 40px;
+    display: flex;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.lista1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lista2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lista3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lista4 {
+    display: flex;
+    justify-content: space-between;
+}
+
+img {
+    height: 20px;
+    width: 20px;
+    text-align: center;
+}
+
+#imagem-bolo {
+    height: 200px;
+    width: 210px;
+    align-items: center;
+    display: flex;
+}
+
+p {
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h3 {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.grade-container {
+    display: grid;
+    height: 95%;
+    width: 100%;
+    margin: 12px 20px;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.bolo1 {
+    display: grid;
+    justify-content: center;
+    border: 2px solid white;
+    background-color: white;
+    height: 100%;
+    width: 85%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px 2px grey;
+}
+
+.bolo2 {
+    display: grid;
+    justify-content: center;
+    border: 2px solid white;
+    background-color: white;
+    height: 100%;
+    width: 85%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px 2px grey;
+}
+
+.bolo3 {
+    display: grid;
+    justify-content: center;
+    border: 2px solid white;
+    background-color: white;
+    height: 100%;
+    width: 85%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px 2px grey;
+}
+
+.bolo4 {
+    display: grid;
+    justify-content: center;
+    border: 2px solid white;
+    background-color: white;
+    height: 100%;
+    width: 85%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px 2px grey;
+}
+
+.bolo5 {
+    display: grid;
+    justify-content: center;
+    border: 2px solid white;
+    background-color: white;
+    height: 100%;
+    width: 85%;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    box-shadow: 2px 2px 2px 2px grey;
+}
+
+.bolo6 {
+    display: grid;
+    justify-content: center;
+    border: 2px solid white;
+    background-color: white;
+    height: 100%;
+    width: 85%;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    box-shadow: 2px 2px 2px 2px grey;
+}
+
+.bolo7 {
+    display: grid;
+    justify-content: center;
+    border: 2px solid white;
+    background-color: white;
+    height: 100%;
+    width: 85%;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    box-shadow: 2px 2px 2px 2px grey;
+}
+
+footer {
+    display: flex;
+    height: 40px;
+    margin: 0;
+    background-color: mediumvioletred;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
