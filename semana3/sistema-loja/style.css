@@ -1,0 +1,88 @@
+                h1 {
+                    color: white;
+                    background-color: rosybrown;
+                    margin-top: 20px;
+                    padding: 20px;
+                    display: block;
+                }
+                
+                img {
+                    margin: 20px;
+                    white: 100;
+                    display: block;
+                }
+                
+                .frase-loja {
+                    color: black;
+                    font-size: large;
+                    margin: 20px;
+                }
+                
+                a {
+                    margin: 8px 8px;
+                    font-size: large;
+                    padding: 6px;
+                    color: rosybrown
+                }
+                
+                .informacoes-da-loja {
+                    color: black;
+                    padding-left: 12px;
+                    margin: 40px;
+                }
+                
+                .nome-loja-funcionarios {
+                    color: white;
+                    background-color: rosybrown;
+                    margin-top: 20px;
+                    padding: 20px;
+                    display: block;
+                }
+                
+                .tr-tabela-func {
+                    color: white;
+                    margin: 12px 8px;
+                    padding: 10px;
+                    background-color: rosybrown;
+                    font-family: 'Times New Roman', Times, serif;
+                    font-size: large;
+                }
+                
+                .tr-funcionario {
+                    color: white;
+                    margin: 12px 8px;
+                    padding: 10px;
+                    background-color: rosybrown;
+                    font-family: 'Times New Roman', Times, serif;
+                    font-size: large;
+                }
+                
+                .entradas-dos-estoques {
+                    color: white;
+                    background-color: rosybrown;
+                    margin-top: 8px 8px;
+                    padding: 6px;
+                    display: block;
+                    font-size: large;
+                }
+                
+                .table-estoque {
+                    color: white;
+                    margin: 8px 8px 9px 9px;
+                    padding: 10px;
+                    background-color: rosybrown;
+                    font-family: 'Times New Roman', Times, serif;
+                    font-size: large;
+                    display: block;
+                }
+                
+                .entrada-pag-produto {
+                    font-family: 'Times New Roman', Times, serif;
+                    padding: 2px;
+                    margin: 2px 2px;
+                    font-size: large;
+                }
+                
+                .th-estoque-infor {
+                    padding: 20px;
+                }
