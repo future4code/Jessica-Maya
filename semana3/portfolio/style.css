@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    color: rgb(44, 40, 54);
+}
+
+.header-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: blueviolet;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 0 112px;
+    position: relative;
+}
+
+h1 {
+    font-size: 50px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+h2 {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.social {
+    margin-top: 1rem;
+    display: flex;
+}
+
+.social a {
+    text-decoration: none;
+    color: rgb(44, 40, 54);
+    padding: 1rem 4rem;
+    border: 1px solid rgb(44, 40, 54);
+    min-width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s ease-in-out;
+}
+
+a:hover {
+    background-color: aliceblue;
+}
+
+.container {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 3rem 30px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+}
+
+.card {
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    margin: 3rem 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blueviolet;
+    background-image: url('./img/jessica.png');
+    background-position: center;
+    background-size: cover;
+    color: teal;
+}
+
+.card-text {
+    width: 40%;
+    letter-spacing: 1px;
+    color: gray;
+    padding: 12px;
+}
+
+.card-wapper {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.card-wapper::before {
+    content: '';
+    position: absolute;
+    height: 100px;
+    width: 100px;
+}
+
+.card-wapper h2 {
+    font-size: 30px;
+    text-transform: uppercase;
+    margin: 0;
+    transition: 0.5s ease-in-out;
+}
+
+.card-wapper p {
+    font-size: 0;
+    visibility: visible;
+    opacity: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.5s ease-in-out;
+}
+
+.card:hover {
+    filter: unset;
+}
+
+.card:hover>.card-wapper::before {
+    height: 200%;
+    width: 200%;
+    opacity: 1;
+}
+
+.card:hover>.card-wapper p a {
+    opacity: 1;
+    visibility: visible;
+    font-size: 14px;
+}
+
+.footer {
+    width: 100%;
+    height: 70px;
+    background-color: rgb(156, 88, 219);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 20rem;
+}
