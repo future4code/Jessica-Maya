@@ -1,0 +1,112 @@
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .texto-e-busca {
+        display: flex;
+        background-color: rgb(235, 152, 0);
+        height: 4em;
+        width: 100vw;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    
+    input {
+        height: 40px;
+        width: 200px;
+        margin-right: 200px;
+    }
+    
+    .card-galeria {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid green;
+    }
+    
+    .imagem-galeria {
+        width: 100%;
+    }
+    
+    main {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        padding: 8%;
+    }
+    
+    footer {
+        display: flex;
+        background-color: rgb(109, 107, 107);
+        color: white;
+        border-bottom: 1px solid rgb(235, 152, 0);
+        height: 4em;
+        width: 100vw;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
+    
+    h3 {
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    h1 {
+        margin-left: 20px;
+    }
+    
+    .container-video {
+        display: flex;
+        justify-content: center;
+        height: 500px;
+        width: 500px;
+        padding-top: 40px;
+        padding-left: 32%;
+        position: absolute;
+    }
+    
+    button {
+        margin: 30px;
+        padding: 20px;
+        box-shadow: 2px 2px 2px 2px gray;
+    }
+    
+    @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+        .texto-e-busca {
+            height: 2em;
+            width: 100vw;
+            padding: 12px;
+        }
+        input {
+            width: 9em;
+            height: 30px;
+            margin-right: 40px;
+        }
+        main {
+            display: grid;
+            grid-template-columns: 1fr;
+            margin: 20px 20px;
+            width: 70%;
+            height: auto;
+            margin-top: 40px;
+        }
+        .container-video {
+            height: 200px;
+            width: 200px;
+            padding-top: 50%;
+            padding-left: 23%;
+        }
+        footer {
+            height: 3em;
+            width: 100vw;
+        }
+    }
