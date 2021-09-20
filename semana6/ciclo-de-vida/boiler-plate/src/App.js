@@ -47,6 +47,7 @@ class App extends React.Component {
       const textString = JSON.stringify(blocosTarefas);
       window.localStorage.setItem("blocosTarefas", textString);
       
+      
     };
 
     getFromLocalStorage = () => {
