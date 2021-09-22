@@ -48,6 +48,7 @@ export default class TelaCadastro extends React.Component{
         this.setState({email: event.target.value})
     }
 
+
     createUser = () =>{
         const url = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users"
         const body = {
@@ -64,6 +65,8 @@ export default class TelaCadastro extends React.Component{
 
         })
     }
+
+
 
     render(){
         return(
