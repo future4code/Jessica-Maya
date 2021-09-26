@@ -6,7 +6,8 @@ import TelaListaPlayList from "./Components/TelaListaPlayList";
 export default class App extends React.Component {
 
   state={
-    telaAtual: "AddPlayList"
+    telaAtual: "AddPlayList",
+    playlistId: ''
   }
 
 
@@ -27,10 +28,10 @@ export default class App extends React.Component {
     this.setState({telaAtual: "AddPlayList"})
   }
 
-  irParaAddMusicas = () =>{
-    this.setState({telaAtual: "AddMusicas"})
+  irParaAddMusicas = (playlistId) =>{
+    this.setState({telaAtual: "AddMusicas", playlistId: playlistId})
   }
-  
+
   irParaListas = () =>{
     this.setState({telaAtual: "Listas"})
   }
@@ -44,7 +45,5 @@ export default class App extends React.Component {
       </div>
     );
   }
-  
+
 }
-
-

@@ -1,6 +1,13 @@
 import React from "react";
 import axios from "axios";
-import TelaListaPlayList from "./TelaListaPlayList";
+import styled from "styled-components";
+
+const ContainerMusica = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+`
 
 const headers = {
     headers:{
@@ -11,15 +18,34 @@ const headers = {
 export default class TelaAddMusicas extends React.Component{
 
     state={
-        playlistId: [],
+        tracks:[],
+        playlists: [],
         name: '',
         artist: '',
         url: '',
+        playlistId:  "",
+        
     }
-    
 
-addTrackToPlaylist = (playlistId) =>{
-    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`
+    componentDidMount(){
+        this.mostrarPlayList()
+    }
+
+    mostrarPlayList  = () =>{
+        const url = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists"
+
+        axios.get(url, headers)
+        .then((resposta)=>{
+            this.setState({playlists: resposta.data.result.list})
+           this.getPlaylistTracks()
+        })
+        .catch((error)=>{
+            alert(error)
+        })
+    }
+
+        AdicionarMusica = () =>{
+    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.state.playlistId}/tracks`
     const body = {
         name: this.state.name,
         artist: this.state.artist,
@@ -27,13 +53,31 @@ addTrackToPlaylist = (playlistId) =>{
     }
     axios.post(url, body, headers)
     .then((resposta)=>{
-        this.setState({playlistId: resposta.data})
-        console.log({playlistId: resposta.data})
+        this.setState({name: '', artist: '', url: ''})
+        console.log(resposta.data)
     })
     .catch((error)=>{
-        console.log(error)
+        this.mostrarPlayList()
+        this.getPlaylistTracks()
+        alert(error.response.data.message)
     })
 }
+
+    getPlaylistTracks = () =>{
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.state.playlistId}/tracks`
+
+         axios.get(url,headers)
+         .then((resposta)=>{
+             console.log(resposta)
+            this.setState({tracks: resposta.data.result.tracks})
+            console.log(resposta.data)
+         })
+        .catch((error)=>{
+            console.log(error)
+        })
+    }
+
+
 
 handleName= (event)=>{
     this.setState({name: event.target.value})
@@ -48,22 +92,31 @@ handleUrl= (event)=>{
 }
 
 render(){
-    
-    const listaDasPlayLists = this.state.playlistId.map((lista)=>{
+
+    const listaDasPlayLists = this.state.playlists.map((lista)=>{
         return(
             <option key={lista.name} value={lista.url}>
-                {lista.name}
+               {lista.name}
             </option>
         )
     })
 
-   
+    
+    
+    const music = this.state.tracks.map((item)=>{
+        return <div>
+            <h4>Nome:</h4> <p>{item.name}</p>
+            <h4>Artista:</h4><p>{item.artist}</p>
+            <audio src={item.url} controls></audio>
+            
+        </div>
+    })
 
 
     return(
-            <div>
-            
-            <select onChange={this.getAllList}>
+            <ContainerMusica>
+
+            <select onChange={this.mostrarPlayList()}>
                 <option>Escolha sua playlist</option>
                 {listaDasPlayLists}
                 </select>
@@ -82,11 +135,15 @@ render(){
                 value={this.state.url}
                 onChange={this.handleUrl}
                 />
-                <TelaListaPlayList/>
-                <button onClick={this.props.irParaListas}>listas</button>
+
+
+                <button type='submit'onClick={()=> this.AdicionarMusica()} >Adicionar Musica</button>
+                <button onClick={()=> this.props.irParaAddPlayList()}>Voltar</button>
+                {music}
                 
-            </div>
+
+            </ContainerMusica>
         )
     }
 
-}
+} 
