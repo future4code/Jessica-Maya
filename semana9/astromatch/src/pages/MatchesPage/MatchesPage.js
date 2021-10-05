@@ -13,9 +13,12 @@ const Cardlista = styled.div`
 
 const MatchesPage = (props)=>{
     return(
+        <div>
         <Cardlista>
             Ana Maria
+            <button onClick={()=> props.changePage()}>Home</button>
         </Cardlista>
+        </div>
     )
 }
 export default MatchesPage
