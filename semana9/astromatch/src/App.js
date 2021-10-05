@@ -1,37 +1,31 @@
 import  React, {useState} from 'react'
-import {HomePage} from "./pages/HomePage/HomePage"
-import {MatchesPage} from "./pages/MatchesPage/MatchesPage"
+import HomePage from "./pages/HomePage/HomePage"
+import MatchesPage from "./pages/MatchesPage/MatchesPage"
+import TelaDescricao from "./pages/DescricaoMatch/TelaDescricao"
 
 const App =()=>{
 
-  const [telaInicial, setTelaInicial]=useState("home")
+  const [telaInicial, setTelaInicial]=useState("0")
 
 
 
   const renderizacaoDePagina = () =>{
-    switch(telaInicial){
-      case 'home':
-        return <HomePage/>
-      case 'matches':
-        return <MatchesPage /> 
-      default:
-        return <HomePage />
+    if(telaInicial === "0"){
+      return <TelaDescricao /> 
+    }else if(telaInicial === "1"){
+      return<MatchesPage />
     }
   }
-
-    const changePage = (troca) =>{
-      setTelaInicial(troca)
-    }
   
+  const changePage = (telas) =>{
+      setTelaInicial(telas)
+    }
 
   return(
     <div>
-      {/* <HomePage
-      mudarTelas={telaInicial}
-      /> */}
-      {renderizacaoDePagina}
-      <MatchesPage
-      changePage={telaInicial}
+      {renderizacaoDePagina()}
+      <HomePage
+      changePage={changePage}
       />
     </div>
   )

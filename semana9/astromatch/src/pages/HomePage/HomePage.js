@@ -1,11 +1,15 @@
 import React from "react";
 
-export const HomePage = (props)=>{
+const HomePage = (props)=>{
     return(
         <div>
-            HomePage
-            <button onClick={()=> props.mudarTelas()}>Ir para Matches</button>
+              
+            <div>
+            <button onClick={()=> props.changePage("0")}>Home</button>
+            <button onClick={()=> props.changePage("1")}>Matches</button>
+            </div>
       <button>Limpar matches</button>
         </div>
     )
 }
+export default HomePage
