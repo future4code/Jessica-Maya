@@ -1,13 +1,8 @@
-import  React, {useState, useEffect} from 'react'
+import  React, {useState} from 'react'
 import HomePage from "./pages/HomePage/HomePage"
 import MatchesPage from "./pages/MatchesPage/MatchesPage"
 import axios from 'axios'
-import styled from "styled-components"
 
-const Button = styled.button`
-    height: 30px;
-    width: 60px;
-`
 
 const App =()=>{
 
@@ -16,9 +11,9 @@ const App =()=>{
 
   const renderizacaoDePagina = (numero) =>{
     if(telaInicial === numero){
-      return <MatchesPage changePage={changePage} /> 
+      return <MatchesPage changePage={changePage} clearMatches={clearMatches}/> 
     }else {
-      return <HomePage changePage={changePage}/>
+      return <HomePage changePage={changePage} clearMatches={clearMatches}/>
     }
   }
   
@@ -30,19 +25,16 @@ const App =()=>{
       const url = ('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jessica-bento-maryam/clear')
       axios.put(url)
       .then((res)=>{
-        console.log(res.data)
+        alert("Lista Apagada com Sucesso")
       })
       .catch((error)=>{
-        console.log(error.response)
+        alert("Deu um erro inesperado! Tente novamente.")
       })
     }
-
-
 
   return(
     <div>
       {renderizacaoDePagina()}
-      <Button onClick={clearMatches}>Apagar</Button>
     </div>
   )
 }

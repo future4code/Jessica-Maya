@@ -1,67 +1,56 @@
-import React, {useState, useEffect} from "react";
-import styled from "styled-components";
+import React, {useState, useEffect} from "react"
 import axios from 'axios'
+import {Cardlista, Photo, ContainerMatch, Button, Header,  ContainerTotal, AcabouList } from "./styled"
 
-const Photo = styled.img`
-    width: 60px;
-    height: 60px;
-    border-radius: 20px;
-`
-
-const Cardlista = styled.div`
-    display:flex;   
-    justify-content:space-around;
-    align-items: center;
-    border: 1px solid black;
-    border-radius: 20px;
-    margin-top: 20px;
-    height: 20vh;
-    width: 40vw;
-`
-const ContainerMatch = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    
-`
-const Button = styled.button`
-    height: 30px;
-    width: 50px;
-`
 
 const MatchesPage = (props)=>{
-    const [matchesList, setMatchesLis]=useState([])
+    const [matchesList, setMatchesList]=useState([])
 
-    useEffect(()=>{
-        getMatches()
-    }, [])
 
     const getMatches = () =>{
         const url = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jessica-bento-maryam/matches"
         axios.get(url)
         .then((res)=>{
-            setMatchesLis(res.data.matches)
+            setMatchesList(res.data.matches)
         })
         .catch((error)=>{
-            console.log(error.response)
+            alert(`Deu um erro inesperado! Tente novamente.`)
         })
     }
 
+
     const listMatches = matchesList.map((match)=>{
-        return <Cardlista>
-        <Photo src={match.photo}/>
-        <h3>{match.name}</h3>
-        </Cardlista>
+        return ( <Cardlista>
+            <Photo src={match.photo}/>
+            <h3>{match.name}</h3>
+            ❤️‍🔥
+            </Cardlista>)
     })
 
+
+    useEffect(()=>{
+        getMatches()
+    }, [])
+
     return(
-        <div>
+        <ContainerTotal>
+             {listMatches.length > 0 ? <ContainerMatch>
+         <Header>
+            <Button onClick={()=> props.changePage("0")}>↩️</Button>
+            <h1>ASTROMETCH </h1>
+         </Header>
+         {listMatches}
+         </ContainerMatch>  
+         :
          <ContainerMatch>
-          {listMatches}
+         <Header>
+            <Button onClick={()=> props.changePage("0")}>↩️</Button>
+            <h1>ASTROMETCH </h1>
+         </Header>
+         <AcabouList>Você não tem Match! 💔</AcabouList>
          </ContainerMatch>
-         <Button onClick={()=> props.changePage("0")}>⬅️</Button>
-         </div> 
+        } 
+         </ContainerTotal>
     )
 }
 export default MatchesPage

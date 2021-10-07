@@ -1,45 +1,10 @@
 import React,{useState, useEffect} from "react";
-import styled from "styled-components";
 import axios from 'axios';
-
-
-
-const Profiles = styled.div`
-    display:flex;   
-    justify-content:center;
-    flex-direction:column;
-    align-items: center;
-    border: 1px solid black;
-    width: 500px;
-`
-const ContainerHome = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-`
-
- const Photo = styled.img`
-    padding-top: 20px;
-    width: 400px;
-    height: 350px;
-`
-
-const Button = styled.button`
-    height: 30px;
-    width: 50px;
-
-    button:hover{
-        background-color: red;
-    }
-`
+import {Profiles, ContainerHome,Photo,Button, Header, ContainerButton, ButtonHeader, AcabouPerf,ButtonClear} from "./styled"
 
 const HomePage = (props)=>{
     const [profile, setProfile]=useState({})
 
-    useEffect(()=>{
-        getProfile()
-    }, [])
 
     const getProfile = () =>{
         axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jessica-bento-maryam/person')
@@ -52,37 +17,77 @@ const HomePage = (props)=>{
 
     }
 
-    const choosePerson = (id, choice)=>{
+    const choosePerson = (idPessoa,choicePessoa)=>{
        const url = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jessica-bento-maryam/choose-person"
        const body={
-           id: profile.id,
-           choice: choice
+           id: idPessoa,
+           choice: choicePessoa
        }
         axios.post(url, body)
         .then((res)=>{
             getProfile()
+            console.log(res.data)
         })
         .catch((error)=>{
             console.log(error.response)
         })
 
     } 
+    useEffect(()=>{
+        getProfile()
+    }, [])
 
     return(
-        <div>
+       
         <ContainerHome>
-    {!profile ? <div>Acabaram os perfis 💔, aperte o botão de limpar!</div> : 
+
+           {!profile ?   <Profiles>
+            <Header>
+            <h1>ASTROMETCH </h1>
+            <ButtonHeader onClick={()=> props.changePage()}>↪️</ButtonHeader>
+            </Header>
+        <AcabouPerf>Acabaram os perfis 💔, aperte o botão de limpar!
+        <ButtonClear onClick={()=> props.clearMatches()}>Apagar</ButtonClear>
+        </AcabouPerf>
+
+        </Profiles>   
+        : 
         <Profiles>
+            <Header>
+            <h1>ASTROMETCH </h1>
+            <ButtonHeader onClick={()=> props.changePage()}>↪️</ButtonHeader>
+            </Header>
         <Photo src={profile.photo}/>
-        <h1>{profile.name }, {profile.age}</h1>
+        <h2>{profile.name }, {profile.age}</h2>
         <p>{profile.bio}</p>
-        <Button onClick={()=>choosePerson(true)}>✖️</Button>
-        <Button onClick={()=>choosePerson(false)}>❤</Button>
+        <ContainerButton>
+        <Button onClick={()=>choosePerson(profile.id, false)}>❌</Button>
+        <Button onClick={()=>choosePerson(profile.id, true)}>❤️</Button>
+        </ContainerButton>
         </Profiles> 
-    }
+
+    }   
         </ContainerHome>
-        <Button onClick={()=> props.changePage()}>➡️</Button>
-        </div>
+        
     )
 }
 export default HomePage 
+
+{/* <ContainerHome>
+{!profile ? <h1>Acabaram os perfis 💔, aperte o botão de limpar!</h1> : 
+    <Profiles>
+        <Header>
+        <Button onClick={()=> props.changePage()}>➡️</Button>
+        <h1>ASTROMETCH </h1>
+        <Button onClick={ props.clearMatches}>Apagar</Button>
+        </Header>
+    <Photo src={profile.photo}/>
+    <h2>{profile.name }, {profile.age}</h2>
+    <p>{profile.bio}</p>
+    <ContainerButton>
+    <Button onClick={()=>choosePerson(profile.id, false)}>✖️</Button>
+    <Button onClick={()=>choosePerson(profile.id, true)}>❤</Button>
+    </ContainerButton>
+    </Profiles> 
+}   
+    </ContainerHome> */}
