@@ -1,6 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import HomePage from "../Pages/HomePage/HomePage"
-import ListTripsPage from "../Pages/ListTripsPage/ListTripsPage"
 import ApplicationFormPage from "../Pages/ApplicationFormPage/ApplicationFormPage"
 import LoginPage from "../Pages/LoginPage/LoginPage"
 import TripDetailsPage from "../Pages/TripDetailsPage/TripDetailsPage"
@@ -13,10 +12,6 @@ import Header from "../Header/Header"
             <Switch>
                 <Route exact path="/">
                     <HomePage/>
-                </Route>
-                <Route exact path="/trips/list">
-                    <Header/>
-                    <ListTripsPage/>
                 </Route>
                 <Route exact path="/trips/application">
                     <Header/>

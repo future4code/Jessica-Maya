@@ -6,55 +6,63 @@ import axios from "axios"
 const LoginPage =() =>{
 
     const history = useHistory()
-
-    const goToAdminHomePage =()=>{
-        history.push("/admin/trips/list")
-    }
  
     const [email, setEmail]=useState('')
-    const [senha, setSenha]=useState('')
+    const [password, setPassword]=useState('')
 
     const handleEmail=(event) =>{
         setEmail(event.target.value)
     }
 
     const handleSenha=(event)=>{
-        setSenha(event.target.value)
+        setPassword(event.target.value)
     }
 
+    const loginSubmit = (event) =>{
+        event.preventDefault()
 
-    const Login = () =>{
-        const url= "https://us-central1-labenu-apis.cloudfunctions.net/labeX/jessica-bento-maryam/login"
+        console.log(email, password)
+         const url= "https://us-central1-labenu-apis.cloudfunctions.net/labeX/jessica-bento-maryam/login"
         const body = {
-            email: "jessicadev@gmail.com.br",
-            senha: "123456"
+            email: email,
+            password: password
         }
         axios.post(url, body)
         .then((res)=>{
-            console.log(res.data)
+            localStorage.setItem('token', res.data.token)
+            history.push("/admin/trips/list")
         })
         .catch((error)=>{
-            console.log(error.message)
+            console.log(error.response)
         })
     }
+
+    
     return (
         <ContainerLogin>
             <h1>Login</h1>
+            <form onSubmit={loginSubmit}>
             <ContainerInput
             type= "email"
             name= "email"
             placeholder= "Email"
             value={email}
             onChange={handleEmail}
+            pattern={'[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'}
+
             required/>
+
             <ContainerInput
             placeholder= "Senha"
             type= "password"
             name= "password"
-            value={senha}
+            value={password}
             onChange={handleSenha}
             required/>
-            <Button onClick={goToAdminHomePage}>log in</Button>
+
+             <Button>log in</Button>
+            </form>
+
         </ContainerLogin>
     )
 }

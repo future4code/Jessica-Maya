@@ -5,7 +5,7 @@ const HomePage =() =>{
     const history = useHistory()
 
     const goToListTripPage=()=>{
-        history.push("/trips/list")
+        history.push("/trips/application")
     }
 
     const goToLoginPage =()=>{
