@@ -5,20 +5,20 @@ import Button from "@material-ui/core/Button"
 import {useHistory} from "react-router-dom"
 import {singUp} from "../../services/user"
 
-const SingForm = () =>{
+const SingForm = ({setRightButtonText}) =>{
     const history = useHistory()
     const [form, onChange, clear] = useForm({username: '', email: '', password: ''})
 
     const  onSubmitForm = (event) =>{
         event.preventDefault()
-        singUp(form, clear, History)
+        singUp(form, clear, history, setRightButtonText)
     }
 
     return (
         <div>
             <form onSubmit={onSubmitForm}>
                <TextField
-                    type={"username"}
+                    type={"name"}
                     name={"username"}
                     value={form.username}
                     onChange={onChange}

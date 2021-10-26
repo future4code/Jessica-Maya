@@ -6,13 +6,13 @@ import Button from "@material-ui/core/Button"
 import {goToSingUp} from "../../Route/coordinator"
 import useUnprotectedPage from "../../hooks/useUnprotectedPage"
 
-const LoginPage = () =>{
+const LoginPage = ({setRightButtonText}) =>{
     useUnprotectedPage()
     const history = useHistory()
     return (
         <div>
             <img src={logo}/>
-            <LoginForm/>
+            <LoginForm setRightButtonText={setRightButtonText}/>
             <Button
             onClick={() => goToSingUp(history)}
             type={"submit"}
