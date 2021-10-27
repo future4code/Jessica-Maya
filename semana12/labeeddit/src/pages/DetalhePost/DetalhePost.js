@@ -1,13 +1,13 @@
 import React from 'react'
 import useProtectedPage from '../../hooks/useProtectedPage'
 
-const AddListPost = () =>{
+const DetalhePost = () =>{
     useProtectedPage()
     return (
         <div>
-            AddListPost
+            Detalhe
             
         </div>
     )
 }
-export default AddListPost
+export default DetalhePost

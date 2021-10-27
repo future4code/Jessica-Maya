@@ -6,11 +6,15 @@ export const goToSingUp = (history) =>{
     history.push("/cadastro")
 }
 
-export const goToAddListPost = (history) =>{
-    history.push("/adicionar-post")
+export const goToDetalhePost = (history, id) =>{
+    history.push(`/posts/${id}/comments`)
 }
 
 export const goToPostPage = (history) =>{
     history.push("/posts")
 }
+
+// export const goToPost = (history, post) =>{
+//     history.push(`/posts/${post}/comments`)
+// }
 

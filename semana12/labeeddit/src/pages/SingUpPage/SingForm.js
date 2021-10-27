@@ -5,13 +5,13 @@ import Button from "@material-ui/core/Button"
 import {useHistory} from "react-router-dom"
 import {singUp} from "../../services/user"
 
-const SingForm = ({setRightButtonText}) =>{
+const SingForm = () =>{
     const history = useHistory()
     const [form, onChange, clear] = useForm({username: '', email: '', password: ''})
 
     const  onSubmitForm = (event) =>{
         event.preventDefault()
-        singUp(form, clear, history, setRightButtonText)
+        singUp(form, clear, history)
     }
 
     return (
