@@ -5,7 +5,8 @@ import axios from "axios"
 const useRequestData = (initialData, url) => {
     const [page, setPage] = useState(initialData)
 
-    useEffect(()=>{
+
+    const functionAtualizar = () =>{
         axios.get(url, {
             headers: {
                 Authorization: localStorage.getItem('token')
@@ -17,6 +18,9 @@ const useRequestData = (initialData, url) => {
         .catch((error)=>{
             console.log(error)
         })
+    }
+    useEffect(()=>{
+       functionAtualizar()
     }, [url])
     return (page)
 }

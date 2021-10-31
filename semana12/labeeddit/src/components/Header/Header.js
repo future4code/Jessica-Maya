@@ -11,17 +11,16 @@ import {GlobalStateContext} from "../../Global/GlobalStateContext"
 const  Header = () => {
   const history = useHistory()
   const {states, seters} = useContext(GlobalStateContext)
+   const token = localStorage.getItem("token")
 
   const logout = () =>{
     localStorage.removeItem("token")
   }
 
-  const token = localStorage.getItem('token')
-
   const rightButtonAction = () =>{
     if(token){
       logout()
-      seters.setRightButtonText("Logout")
+      seters.setRightButtonText("Login")
       goToLogin(history)
     }else{
       goToLogin(history)

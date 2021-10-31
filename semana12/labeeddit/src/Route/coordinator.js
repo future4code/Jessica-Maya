@@ -14,7 +14,5 @@ export const goToPostPage = (history) =>{
     history.push("/posts")
 }
 
-// export const goToPost = (history, post) =>{
-//     history.push(`/posts/${post}/comments`)
-// }
+
 

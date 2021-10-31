@@ -1,56 +1,65 @@
-import React, {useEffect} from 'react'
+import React,{useState} from 'react'
 import TextField from "@material-ui/core/TextField"
 import useForm from "../../hooks/useForm"
 import Button from "@material-ui/core/Button"
 import {useHistory} from 'react-router-dom'
 import {BASE_URL} from "../../constants/urls"
 import axios from "axios"
+import CircularProgress from "@material-ui/core/CircularProgress"
 
 const CreatePost = () =>{
-    const [form, onChange, clear] = useForm({Primeiro: "", post: ""})
+    const [form, onChange, clear] = useForm({title: "", body: ""})
     const history = useHistory()
+    const [isLoading, setIsLoading]= useState(false)
+
 
     const postCreate = (body) =>{
+        setIsLoading(true)
         axios.post(`${BASE_URL}/posts`, body, {
             headers: {Authorization: localStorage.getItem("token")}})
         .then((res)=>{
-            console.log(res.data)
+            setIsLoading(false)
+            alert(res.data)
         })
         .catch((error)=>{
-            console.log(error.response)
+            setIsLoading(false)
+            console.log(error.response.message)
         })
     }
 
 
     const  onSubmitForm = (event) =>{
         event.preventDefault()
-        postCreate(form, clear, history)
+        postCreate(form, clear, history, setIsLoading)
     }
 
     return (
         <div>
             <form onSubmit={onSubmitForm}>
                 <TextField
-                type={"title"}
+                type={"text"}
                     name={"title"}
                     value={form.title}
                     onChange={onChange}
                     label={"Titulo"}
                     variant={"outlined"}
-                    fullWidth/>
+                    fullWidth
+                    required/>
                     <TextField
                 type={"text"}
-                    name={"text"}
-                    value={form.text}
+                    name={"body"}
+                    value={form.body}
                     onChange={onChange}
                     label={"Texto"}
                     variant={"outlined"}
-                    fullWidth/>
+                    fullWidth
+                    required/>
             <Button
             type={"submit"}
             fullWidth variant={"contained"}
             color={"primary"}
-            margin={"normal"}>Postar </Button>
+            margin={"normal"}>{isLoading? <CircularProgress color={'inherit'} size={24}/> : <>Publicar</>}
+                 </Button>
             </form>
         </div>
     )

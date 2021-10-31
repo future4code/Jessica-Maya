@@ -18,8 +18,7 @@ export const CardText = styled(Typography)`
 `
 
 export const AddRecipeButton = styled(Fab)`
-    position: fixed !important;
-    right: 5px;
-    bottom: 10px;
+    right: 2px;
+    bottom: 2px;
     z-index: 3;
 `

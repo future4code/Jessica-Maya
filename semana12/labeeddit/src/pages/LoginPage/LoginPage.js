@@ -11,7 +11,7 @@ const LoginPage = () =>{
     const history = useHistory()
     return (
         <div>
-            <img src={logo}/>
+            <img src={logo} alt="logo do site"/>
             <LoginForm/>
             <Button
             onClick={() => goToSingUp(history)}

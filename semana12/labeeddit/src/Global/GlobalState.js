@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {GlobalStateContext} from "../GlobalStateContext"
+import {GlobalStateContext} from "../Global/GlobalStateContext"
 
 const GlobalState = (props) =>{
     const token = localStorage.getItem("token")
