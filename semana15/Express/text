@@ -1,0 +1,25 @@
+/*
+npm init --yes 
+npm i express cors 
+npm i @types/express @types/cors typescript
+npx tsc --init
+
+
+ import express from 'express'
+import cors from 'cors'
+
+// :Express é a tipagem!
+const app: Express = express()
+
+const id: number = 1
+
+app.use(express.json())
+app.use(cors())
+app.get("/", (req,res)=>{
+    res.send("Hello")
+})
+
+app.listen(3003, () =>{
+    console.log("Servidor pronto!")
+    console.log("Para parar aperte CTRL C!")
+})*/
