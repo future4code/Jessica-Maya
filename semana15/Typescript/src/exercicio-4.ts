@@ -22,5 +22,9 @@ const pokemon3: pokemon = {
   healthPoints: 35
 }
 
-// a) Como você faria, já com a extensão instalada, para gerar um arquivo javascript 
-//a partir do  arquivo typescript com o código abaixo?
+// a) 
+
+// b) Não
+
+// c) Não sei
+
