@@ -141,98 +141,81 @@ app.get("/user", async(req: Request, res: Response) =>{
 
 // Exercicios com Task - Tarefas
 
-const postTask = async (
-  taskId: string,
-  title: string, 
-  description: string,
-  limitDate: string,
-  status: string,
-  creatorUserId: string,
-  creatorUserNickname: string)=>{
-  await connection.insert({
-    taskId: taskId,
-    title: title, 
-    description: description,
-    limitDate: limitDate,
-    status: status,
-    creatorUserId: creatorUserId,
-    creatorUserNickname: creatorUserNickname
-  }).into("Task")
-}
+app.post("/task", async (req: Request, res: Response) => {
+let codeError: number = 400
+try {
+    const id = Date.now().toString()
+    let { title, description, limit_date, creator_user_id } = req.body
 
-app.post("/task", async(req: Request, res: Response) =>{
-  let errorCode: number = 400
-  try {
-    await postTask(
-    req.body.taskId,
-    req.body.title, 
-    req.body.description,
-    req.body.limitDate,
-    req.body.status,
-    req.body.creatorUserId,
-    req.body.creatorUserNickname
-    )
-
-    const {title, description, limitDate, status, creatorUserId, creatorUserNickname} =  req.body
-
-    if (!title || !description || !limitDate || !status || !creatorUserId || !creatorUserNickname) {
-      errorCode = 401;
-      throw new Error("Please check all fields!");
+    if (!title || !description || !limit_date || !creator_user_id) {
+        codeError = 422 //unprocessable entity
+        throw new Error(`Please, complete the fields "title", "description", "limitDate" and "creator_user_id"...`)
     }
+
+    const formatDefaultDate = (data: any) => {
+        let arrayDate = data && data.split("/")
+        let [year, month, day] = [arrayDate && arrayDate[2], arrayDate && arrayDate[1], arrayDate && arrayDate[0]]
+        let usefullDate = `${year}-${month}-${day}`
+        return usefullDate
+    }
+    formatDefaultDate(limit_date)
 
     const formatDate = (): any => {
-      const dateDay = new Date().toISOString()
-      let pontuacao = dateDay && dateDay.split("-")
-      let [year, month, newday] = [pontuacao && pontuacao[0], pontuacao && pontuacao[1],
-    pontuacao && pontuacao[2].split("T")]
-    let [day, newHour] = [newday && newday[0], newday && newday[1].split(".")]
-    let moment = newHour && newHour[0]
-    let time: any = moment && moment.split(":")
-    let hour = time && time[0] - 3
-    if(hour < 0 ) {
-      hour = hour + 3
-    }
-    let currentDate: string = `${day}-${month}-${year}`
-    return currentDate
-    }
+        const todayDate = new Date().toISOString();
+        let nwd = todayDate && todayDate.split("-");
+        let [year, month, newdt] = [nwd && nwd[0], nwd && nwd[1], nwd && nwd[2].split("T")];
+        let [day, newHour] = [newdt && newdt[0], newdt && newdt[1].split(".")];
+        let moment = newHour && newHour[0];
+        let time: any = moment && moment.split(":");
+        let hour = time && time[0] - 3;
+        if (hour < 0) { hour = hour + 3 }
+        let currentData: string = `${year}-${month}-${day}`;
+        return (currentData)
+    };
+    const date = formatDate()
+    limit_date = formatDefaultDate(limit_date)
 
-
-    if(limitDate < formatDate()){
-      errorCode = 422
-      throw new Error("A deadline must be later than the current date");
-      
+    if (formatDefaultDate(limit_date).valueOf() < date.valueOf()) {
+        codeError = 422 //unprocessable entity
+        throw new Error(`A deadline must be later than the current date.`)
     }
 
-    res.status(200).send("Task Create Success!")
-  } catch (error: any) {
-    res.status(500).send(error.sqlMessage || error.message)
-  }
+    await connection("TodoListTask").insert({ id, title, description, limit_date, creator_user_id })
+    res.status(200).send("Task created successfully")
+
+} catch (error: any) {
+    res.status(codeError).send(error.sqlMessage || error.message)
+}
 })
 
-const getTaskById = async(taskId: string): Promise<any> =>{
-  const result = await connection.raw(`
-  SELECT * FROM Task WHERE taskId = "${taskId}"`)
-
-  return result[0]
+function currentData(currentData: any) {
+throw new Error("Function not implemented.");
 }
+
+
 app.get("/task/:taskId", async(req: Request, res: Response) =>{
-  let errorCode: number = 400
+  let codeError: number = 400
   try {
+      let taskId = (req.params.taskId).toString()
+      const result = await connection.raw(`
+      SELECT TodoListTask.id as "TaskId", TodoListTask.title, TodoListTask.description, TodoListTask.status,
+      TodoListTask.limit_date, TodoListUser.id as "CreaterUserId", TodoListUser.nickname as "creatorUserNickname"
+      FROM TodoListTask
+      JOIN TodoListUser
+      ON TodoListUser.id = TodoListTask.creator_user_id
+      WHERE TodoListTask.id = "${taskId}"
+      `)
 
-    const taskId = req.params.taskId
+      if (!result) {
+          codeError = 404
+          throw new Error(`Deu erro`)
+      }
+      res.status(200).send(result[0][0])
 
-    if(!taskId){
-      errorCode = 404
-      throw new Error("Task not found!")
-    }
-
-    const tasks = await getTaskById(taskId)
-
-    res.status(200).send(tasks)
   } catch (error: any) {
-    res.status(500).send(error.sqlMessage || error.message)
+      res.status(codeError).send(error.sqlMessage || error.message)
   }
-});
+})
 
 const getTaskCreatorById = async(creatorUserId: string): Promise<any> =>{
   const result = await connection.raw(`
