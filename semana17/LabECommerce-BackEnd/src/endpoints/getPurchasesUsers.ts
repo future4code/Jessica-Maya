@@ -10,6 +10,11 @@ req: Request,
         const [purchases] =  await connection("labecommerce_purchases")
         .where({"user_id": `${user}`})
 
+        if(!purchases){
+          res.statusCode = 400
+            throw new Error("'user_id não existe.");
+        }
+
         res.status(200).send(purchases);
 
     } catch (error: any) {
