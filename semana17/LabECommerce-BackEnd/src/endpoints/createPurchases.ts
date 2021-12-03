@@ -1,33 +1,45 @@
 import { Request, Response } from "express"
 import { connection } from "../data/connection"
+import { Compras, Products, User } from "../types"
 
 export const createPurchases = async(
 req: Request,
  res: Response
- ):Promise<any> =>{
+ ) =>{
 
     try {
         const {user_id, product_id, quantity}= req.body
 
-        if(!user_id || !product_id){
+        if(!user_id || !product_id || !quantity){
             res.statusCode = 406
-            throw new Error("'user_id' e 'product_id' são obrigatórios!");
+            throw new Error("'user_id', 'product_id' e 'quantity são obrigatórios!");
         }
 
-        const [product] = await connection("labecommerce_products")
+        const [user]: User[] = await connection("labecommerce_users")
+        .where({id: user_id})
+
+        if(!user){
+            throw new Error("Usuario não encontrado (user_id");  
+        }
+
+        const [product]: Products[] = await connection("labecommerce_products")
         .where({id: product_id})
 
+        if(!product){
+            throw new Error("Produto não encontrado (product_id");  
+        }
 
-        const total = quantity * Number(product.price)
+        const total_price = quantity * Number(product.price)
 
-
-        await connection("labecommerce_purchases")
-        .insert({
+        const compra: Compras = {
+            id: Date.now().toString(),
             user_id,
             product_id,
             quantity,
-            total_price : total 
-        })
+            total_price
+        }
+
+        await connection("labecommerce_purchases").insert(compra)
         res.status(200).send("Compra registrada com sucesso!")
 
 

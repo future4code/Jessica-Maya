@@ -1,13 +1,14 @@
 import { Request, Response } from "express"
 import { connection } from "../data/connection"
+import { Compras } from "../types"
 
 export const getPurchasesUsers = async(
 req: Request,
  res: Response
- ):Promise<void> =>{
+ ) =>{
     try {
         const user = req.params.user_id
-        const [purchases] =  await connection("labecommerce_purchases")
+        const [purchases]:Compras[] =  await connection("labecommerce_purchases")
         .where({"user_id": `${user}`})
 
         if(!purchases){
@@ -18,8 +19,6 @@ req: Request,
         res.status(200).send(purchases);
 
     } catch (error: any) {
-        res.status(400).send({
-      message: error.message,
-    });
+        res.status(400).send({message: error.message});
     }
 }

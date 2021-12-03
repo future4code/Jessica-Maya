@@ -1,16 +1,12 @@
 import { Request, Response } from "express"
-import { join } from "path/posix"
 import { connection } from "../data/connection"
 
 export const getAllUsers = async(
 req: Request,
  res: Response
- ): Promise<void> =>{
+ ) =>{
 
-  //const result = await connection("labecommerce_users")
-  // .select(["labecommerce_users.name","labecommerce_users.email"])
-  // .innerJoin("labecommerce_purchases","labecommerce_purchases.user_id", "labecommerce_users.id")
-  // .select(["labecommerce_purchases.user_id as users_id", "labecommerce_purchases.quantity", "labecommerce_purchases.total_price"])
+
     try {
 
       const result = await connection("labecommerce_purchases")
@@ -26,7 +22,6 @@ req: Request,
           throw new Error(" não existe compras.");
       }
       
-      console.log(result)
         res.status(200).send(result);
 
     } catch (error: any) {

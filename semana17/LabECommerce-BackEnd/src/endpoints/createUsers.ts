@@ -1,10 +1,12 @@
 import { Request, Response } from "express"
 import { connection } from "../data/connection"
+import {User} from "../types"
 
 export const createUsers = async(
 req: Request,
  res: Response
  ): Promise<any> =>{
+
 
     try {
     
@@ -36,12 +38,13 @@ req: Request,
             throw new Error(`O campo do e-mail deve conter um "@" e um ".com"`);
           }
 
-          await connection("labecommerce_users").insert({
-              id: Date.now().toString(),
-              name,
-              email,
-              password
-          })
+          const users: User = {
+            id: Date.now().toString(),
+            name,
+            email,
+            password
+          }
+          await connection("labecommerce_users").insert(users)
 
           res.status(200).send("Usuario Cadastrado!")
 

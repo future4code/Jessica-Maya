@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
 import { connection } from "../data/connection"
+import {Products} from "../types"
 
 export const createProducts = async(
 req: Request,
@@ -9,17 +10,19 @@ req: Request,
     try {
         const {name, price, image_url} = req.body
 
-        if(!name || !price){
+        if(!name || !price || !image_url){
             res.statusCode = 406
-            throw new Error("'name' e 'price' são obrigatórios!");
+            throw new Error("'name', 'price' e 'image_url' são obrigatórios!")
         }
-        await connection("labecommerce_products")
-        .insert({
+
+        const product: Products = {
             id: Date.now().toString(),
             name,
             price,
             image_url
-        })
+        }
+        await connection("labecommerce_products").insert(product)
+
         res.status(200).send("Produto Cadastrado!")
 
     } catch (error: any) {
