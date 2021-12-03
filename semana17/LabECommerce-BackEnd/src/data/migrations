@@ -1,0 +1,50 @@
+import { connection } from "./connection"
+import users from "./users.json"
+import products from "./products.json"
+
+const printError = (error: any) => { console.log(error.sqlMessage || error.message) }
+
+const createTables = () => connection
+   .raw(`
+
+      CREATE TABLE IF NOT EXISTS labecommerce_users (
+        name VARCHAR(255),
+        email VARCHAR(255),
+        password VARCHAR(255)
+      );
+
+      CREATE TABLE IF NOT EXISTS labecommerce_products (
+        id VARCHAR(255) PRIMARY KEY,
+        name VARCHAR(255),
+        price INT,
+        image_url VARCHAR(255) 
+      );
+    
+      CREATE TABLE IF NOT EXISTS labecommerce_purchases (
+        user_id VARCHAR(255),
+        product_id VARCHAR(255),
+        FOREIGN KEY (user_id) REFERENCES labecommerce_users(id),
+        FOREIGN KEY (product_id) REFERENCES labecommerce_products(id),
+        quantity INT,
+        total_price INT 
+     );
+`)
+   .then(() => { console.log("Tabelas criadas") })
+   .catch(printError)
+
+const insertUsers = () => connection("labecommerce_users")
+   .insert(users)
+   .then(() => { console.log("Usuários criados") })
+   .catch(printError)
+
+const insertProducts = () => connection("labecommerce_products")
+   .insert(products)
+   .then(() => { console.log("Produtos criadas") })
+   .catch(printError)
+
+const closeConnection = () => { connection.destroy() }
+
+createTables()
+   .then(insertUsers)
+   .then(insertProducts)
+   .finally(closeConnection)

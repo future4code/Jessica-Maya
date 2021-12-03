@@ -1,0 +1,32 @@
+[
+	{
+		"id" : "9i1211s34-f838-09k87-9e06-5456k32dwr1355",
+		"name" : "Notbook Acer Aspire 3",
+		"price" : 2500,
+		"image_url" : "https://a-static.mlcdn.com.br/1500x1500/notebook-acer-aspire-3-a315-56-3090-intel-core-i3-8gb-256gb-ssd-156-led-windows-10/magazineluiza/226497400/2e6ac51f99fba60f470dbb751257a3a0.jpg"
+	},
+	{
+		"id" : "5a7e728a-3afa-47d6-850d-98as2314d98kj7",
+		"name" : "Iphone 8 Plus",
+		"price" : 2700,
+		"image_url" : "https://www.apple.com/newsroom/images/product/iphone/standard/8plus_and_8_glass_back_big.jpg.large.jpg"
+	},
+	{
+		"id" : "92f4324d-c3232-34d1-21s9-bd3b6303465d",
+		"name" : "Guarda Roupa Casal",
+		"price" : 3200,
+		"image_url" : "https://a-static.mlcdn.com.br/1500x1500/guarda-roupa-casal-hera-8-portas-e-4-gavetas-rufato/modernamobilia2/131/935cf07f87d76fc46eefac0294ae435f.jpg"
+	},
+	{
+		"id" : "934f232i-0126-4f8f-ad68-4d895egf84jj4r4",
+		"name" : "Jarra de Vidro de água",
+		"price" : 160,
+		"image_url" : "https://images-americanas.b2w.io/produtos/1584942762/imagens/1-5l-jarra-de-jarra-de-vidro-transparente-beber-agua-potavel-bule-de-cha-jarra-filtro-jarro-garrafa-de-agua-potavel-bule/1584942762_1_large.jpg"
+	},
+	{
+		"id" : "3jfj45352-234d-123a-80ad-923ds3445fe22",
+		"name" : "Cama Box Casal",
+		"price" : 2450,
+		"image_url" : "https://a-static.mlcdn.com.br/1500x1500/cama-casal-madri-espresso-moveis-canion/madeiramadeira-openapi/352175/68815986d6a904c1ff0935989483625f.jpg"
+	}
+]
