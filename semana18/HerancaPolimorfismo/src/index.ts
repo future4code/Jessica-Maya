@@ -1,6 +1,6 @@
 import app from "./app"
 import { Client } from "./exercicioPolimorfismo/Client";
-import { Place } from "./exercicioPolimorfismo/Place";
+import { Commerce, Industry, myPlace, Place, Residence } from "./exercicioPolimorfismo/Place";
 import { Customer } from "./exerciciosHeranca/Customer";
 import { User } from "./exerciciosHeranca/User";
 
@@ -27,6 +27,23 @@ const newCustomer = new Customer("01", "jessicabento@gmail.com", "Jéssica", "12
   console.log("Nome do Cliente " + newClient.name)
   console.log("Consumo de energia " + newClient.consumedEnergy)
   console.log("Calculo de energia " + newClient.calculateBill())
+  console.log("")
 
 //   const newPlace = new Place("123.432.234-11")
-///   console.log(newPlace)
+///   console.log(newPlace) // ESSA INSTANCIA DA ERRO!  
+
+const newPlace = new myPlace("35588000")
+console.log("Classe Myplace com extends Place: " + newPlace.getCep())
+console.log("")
+
+const newResidence = new Residence(21, "35221-011")
+console.log("Classe Residence com extends Place: " + newResidence.getCep())
+console.log("")
+
+const newCommerce = new Commerce(10, "43392-123")
+console.log("Classe Commerce com extends Place: " + newCommerce.getCep())
+console.log("")
+
+const newIndustry = new Industry(350, "980321-285")
+console.log("Classe Industry com extends Place: " + newIndustry.getCep())
+console.log("")

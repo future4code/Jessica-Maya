@@ -42,4 +42,58 @@
 
 **B) Pense e responda: o que precisaríamos fazer para conseguir efetivamente criar uma instância dessa classe?**
 
-##### R. usar metodos e settes para usar instancias.
+##### R. fazendo outra função filha e extendendo a classe pai Place para que instancia seja criada.
+
+### Exercicio 3
+
+**A) O que precisaríamos fazer para conseguir efetivamente criar uma instância da classe Place? (última pergunta do exercício anterior)**
+
+##### R. Para criar uma instância de uma classe abstrata precisamos declarar uma classe filha e criar uma instância dessa última.
+
+**B) Por que a Place não é uma interface?**
+
+##### R. Porque é uma classe e precisa ter um acesso restrito a um dos seus atributos, o que é impossível de se ser interface.
+
+**C) Por que a classe Place é uma Classe Abstrata?**
+
+##### R. Ela é abstrata porque não enxergamos uma situação em que seria necessário criar uma instância dessa classe.
+
+### Exercicio 4 
+
+**A) Que métodos e propriedades essa classe possui? Por quê?**
+
+##### R. Essa Classe possui dois metodos, primeiro getCpf aonde a propriedade é privada e passou a ser publica com o metodo e o metodo calculateBill() que vem da interface Client e que esta calculando com o consumedEnergy. As Propriedades que essa classe tem são:
+        ````Typescript
+        ```public name: string,
+           public registrationNumber: number,
+           public consumedEnergy: number,
+           private cpf: string,
+           residentsQuantity: number,
+           cep: string 
+        ```
+        ````
+           
+        
+### Ecercicio 5
+
+**A) Quais as semelhanças dessa classe com a ResidentialClient?**
+
+##### R. A semelhança é que as duas estão usando propriedades da interface Client implementando na classe e calculando o consume de energia de cada.
+
+**B) Quais as diferenças dessa classe com a ResidentialClient?**
+
+##### R. A diferença é que as classes tem tres pontos diferentes pois a CommercialClient esta pegando o cnpj que era privado e deixando publico com o metodo, e a classe ResidentialClient esta pegando o cpf com as mesma funcionalidades de private  e residentsQuantity da classe ResidentialClient com a floorsQuantity da classe CommercialClient.
+
+### Ecercicio 6
+
+**A) De qual classe a IndustrialClient deve ser filha? Por quê?**
+
+##### R. Ela é filha da Industry pois tem as mesmas propriedades do pai que é o cep e machinesQuantity. A classe filha esta usando a propriedade machinesQuantity para ser public e esta  calculando com o calculateBill que é da interface Cliente.
+
+**B) Que interface a IndustrialClient implementa? Por quê?**
+
+##### R. Esta implementando insdustryNumber que é privada e usando o metodo getIndustryNumber como public para mostar.
+
+**C) Nós pedimos para criar somente os getters dessa classe. Pense num motivo para isso: por que só os getters?**
+
+##### R. Para pegar so as informações de outras classes pais que são privadas e mudar para public, mas os settes seria para modificar ou acrescentar mais informações.
