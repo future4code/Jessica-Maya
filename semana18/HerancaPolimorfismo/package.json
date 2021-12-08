@@ -1,0 +1,28 @@
+{
+  "name": "herancapolimorfismo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "build": "tsc"
+  },
+  "author": "\"Jessica-Maryam\"",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.14",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/knex": "^0.16.1",
+    "@types/mysql": "^2.15.19",
+    "@types/node": "^16.11.12",
+    "typescript": "^4.5.2"
+  }
+}
