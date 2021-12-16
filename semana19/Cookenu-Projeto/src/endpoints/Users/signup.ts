@@ -1,9 +1,9 @@
 import { Request, Response } from "express"
-import { UserDataBase } from "../data/UserDataBase"
-import { User } from "../entities/User"
-import { Authenticator } from "../services/Authenticator"
-import { HashManager } from "../services/HashManager"
-import { IdGenerator } from "../services/IdGenerator"
+import { UserDataBase } from "../../data/UserDataBase"
+import { User } from "../../entities/User"
+import { Authenticator } from "../../services/Authenticator"
+import { HashManager } from "../../services/HashManager"
+import { IdGenerator } from "../../services/IdGenerator"
 
 export async function signup(req: Request, res: Response) {
     try{
@@ -18,7 +18,7 @@ export async function signup(req: Request, res: Response) {
         }
 
         const userDataBase = new UserDataBase()
-        const user = userDataBase.findUserEmail(email)
+        const user = await userDataBase.findUserEmail(email)
 
         if(user) {
             res.status(409).send("Esse email já está cadastrado")

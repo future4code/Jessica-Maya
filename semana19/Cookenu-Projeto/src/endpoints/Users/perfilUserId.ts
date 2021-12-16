@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import { UserDataBase } from "../data/UserDataBase"
+import { UserDataBase } from "../../data/UserDataBase"
 
 export async function perfilUserId(req: Request, res: Response) {
     try {

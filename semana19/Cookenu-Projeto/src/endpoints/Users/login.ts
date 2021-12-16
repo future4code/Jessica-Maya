@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
-import { UserDataBase } from "../data/UserDataBase"
-import { Authenticator } from "../services/Authenticator"
-import { HashManager } from "../services/HashManager"
+import { UserDataBase } from "../../data/UserDataBase"
+import { Authenticator } from "../../services/Authenticator"
+import { HashManager } from "../../services/HashManager"
 
 export async function login(req: Request, res: Response) {
     try{
