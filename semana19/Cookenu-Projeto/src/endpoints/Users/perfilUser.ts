@@ -1,4 +1,5 @@
 import {Request, Response} from "express"
+import { JsonWebTokenError } from "jsonwebtoken"
 import { UserDataBase } from "../../data/UserDataBase"
 
 export async function perfilUser(req: Request, res: Response) {

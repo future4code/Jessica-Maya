@@ -1,25 +1,16 @@
- export enum FOLLOW_USER {
-        SEGUIR = "SEGUINDO",
-        DESSEGUIR = "NOT SEGUINDO"
-    }
-    
     export class Follow {
         constructor(
             private user_seguidor: string,
-            private user_seguindo: string,
-            private role: FOLLOW_USER
+            private user_seguido: string
         ) {}
         public getUserSeguidor() {
             return this.user_seguidor
         }
-        public getUserSeguindo() {
-            return this.user_seguindo
-        }
-        public getRole() {
-            return this.role
+        public getUserSeguido() {
+            return this.user_seguido
         }
            
         static toFollowModel(data: any): Follow {
-            return new Follow(data.user_seguidor, data.user_seguindo, data.role)
+            return new Follow(data.user_seguidor, data.user_seguido)
         }
     }

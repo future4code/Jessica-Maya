@@ -7,10 +7,12 @@ export class UserDataBase extends BaseDataBase {
         await BaseDataBase.connection("Cookenu_User")
         .insert({
             id: user.getId(),
-            name: user.getName(),
             email: user.getEmail(),
-            password: user.getPassword()
+            password: user.getPassword(),
+            name: user.getName(),
+            role: user.getRole()
         })
+        
     }catch(error) {
         throw new Error(error.sqlMessage || error.message)
     }
@@ -19,10 +21,10 @@ export class UserDataBase extends BaseDataBase {
     public async findUserEmail(email: string): Promise<User> {
         try {
             const user = await BaseDataBase.connection("Cookenu_User")
-            .select("*")
-            .where({email: email})
+            .select(`*`)
+            .where({email})
 
-        return User.toUserModel(user[0])
+        return user[0] && User.toUserModel(user[0])
         } catch (error) {
             throw new Error(error.sqlMessage || error.message)
         }
@@ -31,7 +33,8 @@ export class UserDataBase extends BaseDataBase {
     public async getAllUsers(): Promise <User[]> {
         try{
         const user = await BaseDataBase.connection("Cookenu_User")
-        .select("id", "name", "email")
+        .select("id", "name", "email, role")
+       
         return user.map((user => User.toUserModel(user)))
 
         }catch(error) {
@@ -43,7 +46,7 @@ export class UserDataBase extends BaseDataBase {
     public async getUserId(id: string): Promise<User> {
         try {
             const user = await BaseDataBase.connection("Cookenu_User")
-            .select("id", "name", "email")
+            .select("id", "name", "email, role")
             .where({id: id})
 
         return User.toUserModel(user[0])

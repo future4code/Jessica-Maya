@@ -1,9 +1,12 @@
 import * as jwt from "jsonwebtoken"
 import dotenv from "dotenv"
+import { USER_ROLES } from "../entities/User"
+
 
 dotenv.config()
 export interface AuthenticationData {
-    id: string,
+    id: string
+    role: USER_ROLES
 }
 
 export class Authenticator {
@@ -15,7 +18,12 @@ export class Authenticator {
     }
 
     public getTokenData(token: string): AuthenticationData {
-        const data = jwt.verify(token, process.env.JWT_KEY)
-        return data as AuthenticationData
+        try{
+            const data = jwt.verify(token, process.env.JWT_KEY)
+            return data as AuthenticationData
+            
+        }catch(error) {
+            console.log(error)
+        }
     }
 }

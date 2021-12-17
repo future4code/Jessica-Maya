@@ -30,11 +30,14 @@ export class RecipeDataBase extends BaseDataBase {
         }
     }
 
-    public async getAllRecipes(): Promise <Recipe[]> {
+    public async getAllRecipesId(id: string): Promise <Recipe> {
         try{
+            
         const recipe = await BaseDataBase.connection("Cookenu_Recipe")
-        .select("id", "title", "description", "cratedAt, image_url")
-        return recipe.map((recipe => Recipe.toRecipeModel(recipe)))
+        .select("id", "title", "description", "cratedAt" , "image_url")
+        .where({id: id})
+
+        return Recipe.toRecipeModel(recipe[0])
 
         }catch(error) {
             throw new Error(error.sqlMessage || error.message)

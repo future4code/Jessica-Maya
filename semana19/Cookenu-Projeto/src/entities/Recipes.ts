@@ -1,3 +1,5 @@
+import formatDate  from "../services/dataFormat"
+
 export class Recipe {
     constructor(
         private id: string,
@@ -20,15 +22,15 @@ export class Recipe {
     public getCratedAt() {
         return this.cratedAt
     }
-    public getUserId() {
-        return this.user_id
-    }
     public getImage() {
         return this.image_url
+    }
+    public getUserId() {
+        return this.user_id
     }
        
     static toRecipeModel(data: any): Recipe {
         return new Recipe(data.id, data.title, data.description,
-             data.cratedAt, data.user_id, data.image_url)
+            formatDate(data.cratedAt), data.image_url, data.user_id,)
     }
 }

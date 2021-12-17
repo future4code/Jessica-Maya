@@ -7,10 +7,14 @@ import { IdGenerator } from "../../services/IdGenerator"
 
 export async function signup(req: Request, res: Response) {
     try{
-        const {name, email, password} = req.body
+        const {email, password, name, role} = req.body
 
-        if(!name || !email || !password) {
-            res.status(422).send("Insira corretamente as informações de 'name', 'email' e 'password'")
+        if(!name || !email || !password || !role) {
+            res.status(422).send("Insira corretamente as informações de 'name', 'email', 'password' e 'role'")
+        }
+
+        if (!email.includes("@") || !email.includes(".com")) {
+            res.status(422).send('Formato de e-mail inválido. O e-mail deve conter "@" e ".com" ');
         }
 
         if(!password || password.length < 6) {
@@ -30,14 +34,14 @@ export async function signup(req: Request, res: Response) {
         const hashManager = new HashManager()
         const hashPassword = await hashManager.hash(password)
 
-        const newUser = new User(id, name, email, hashPassword)
+        const newUser = new User(id, email, hashPassword, name, role)
         await userDataBase.createUser(newUser)
 
         const authenticator = new Authenticator()
-        const token = authenticator.generate({id})
+        const token = authenticator.generate({id, role})
 
         res.status(200).send({message: "Usuario criado com sucesso", token})
     }catch (error){
-    res.status(400).send(error.message)
+        res.send(error.sqlMessage || error.message)
     }
 }
