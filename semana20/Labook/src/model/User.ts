@@ -1,30 +1,19 @@
-export class User { 
-    constructor(
-        private id: string,
-        private name: string,
-        private email: string,
-        private password: string
-    ){}
 
-    public getId() {
-        return this.id
-    }
+export interface login {
+  
+    email: string,
+    password: string
     
-    public getName() {
-        return this.name
-    }
+ }
 
-    public getEmail() {
-        return this.email
-    }
-
-    public getPassword() {
-        return this.password
-    }
+ export interface authenticationData {
+    id: string
+ }
     
-
-    static toUserModel(data: any): User {
-        return new User(data.id, data.name, data.email, data.password)
-    }
-
-}
+ export interface users extends authenticationData, login {
+  
+    name:string
+    
+ }
+    
+    

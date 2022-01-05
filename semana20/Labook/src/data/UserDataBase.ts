@@ -1,18 +1,18 @@
-import { User } from "../model/User";
+import { users } from "../model/User";
 import { BaseDataBase } from "./BaseDataBase";
 
 export class UserDataBase extends BaseDataBase {
 
     insertUser = async (
-        user: User
+        user: users
     )=> {
         try {
             await BaseDataBase.connection("labook_user")
             .insert({
-                id: user.getId(),
-                name: user.getName(),
-                email: user.getEmail(),
-                password: user.getPassword()
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                password: user.password
             })
             
         } catch (error: any) {
@@ -23,7 +23,7 @@ export class UserDataBase extends BaseDataBase {
 
      selectUserByEmail = async (
         email: string
-     ): Promise<User> => {
+     ): Promise<users> => {
         
      try {
            

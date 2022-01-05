@@ -1,10 +1,7 @@
-import { Hash } from "crypto"
 import { UserDataBase } from "../data/UserDataBase"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
-import { User } from "../model/User"
-
 
 export class UserBusiness {
 
@@ -24,9 +21,12 @@ export class UserBusiness {
         const hashManager = new HashManager()
         const cypherPassword = hashManager.createHash(user.password)
 
-        const newUser = new User(id, user.name, user.email, cypherPassword)
 
-        await new UserDataBase().insertUser(newUser)
+        await new UserDataBase().insertUser({
+            id,
+            name: user.name,
+            email: user.email,
+            password: cypherPassword})
 
         const token: string = new Authenticator().generateToken({
             id

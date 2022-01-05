@@ -1,18 +1,15 @@
 import { Request, Response } from "express"
 import { UserBusinessLogin } from "../business/loginBusiness"
-import { UserBusiness } from "../business/signupBusiness"
-import { User } from "../model/User"
-
 
 export const loginController = async (
     req: Request,
-    res:Response,
-    user: User
+    res:Response
 ) => {
     try {
         
-        const {email, password} = req.body
-        const token = await new UserBusinessLogin().loginBusiness({ email: user.getEmail(), password: user.getPassword() })
+        const {email, password } = req.body
+
+        const token = await new UserBusinessLogin().loginBusiness({email, password})
 
         res.status(200).send({
             message: "Usuário logado!",
