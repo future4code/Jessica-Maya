@@ -24,10 +24,10 @@ export class PostDataBase extends BaseDataBase{
 
     getPostById = async (id: string): Promise<posts> => {
         try {
-            const result = await  BaseDataBase.connection("labook_post")
-            .select("photo")
+            const result = await BaseDataBase.connection("labook_post")
+            .select("*")
             .where({id: id})
-    
+            
             return result[0]
             
         } catch (error: any) {

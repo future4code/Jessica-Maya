@@ -10,7 +10,7 @@ export class UserBusinessLogin {
 
         if(!login.email || 
            !login.password) {
-               throw new Error(" 'email' e 'senha' são obrigatórios")
+               throw new Error(" 'email' e 'password' são obrigatórios")
            }
 
         const user: users = await new UserDataBase().selectUserByEmail(login.email)

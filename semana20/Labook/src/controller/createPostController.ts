@@ -12,7 +12,8 @@ export const createPostController = async (
         const token = await new createPostBusiness().createPost({photo, description, creationData, type, userId})
 
         res.status(200).send({
-            message: "Post criado com sucesso"
+            message: "Post criado com sucesso",
+            token
         })
     } catch (error: any) {
         res.status(400).send(error.message)

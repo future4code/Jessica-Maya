@@ -6,7 +6,8 @@ export const postByIdController = async (
             res: Response
         ) => {
             try {
-                const id = req.params.id
+
+                const {id} = req.params
                 const post = await new postByIdBusiness().postById(id)
 
                 res.status(200).send(post)
