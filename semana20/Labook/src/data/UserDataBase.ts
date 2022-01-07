@@ -39,5 +39,17 @@ export class UserDataBase extends BaseDataBase {
         }
      }
 
+     findUserEmail = async(email: string): Promise <users> => {
+        try {
+            const user = await BaseDataBase.connection("labook_user")
+            .select("*")
+            .where({email})
+
+            return user[0] 
+            
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+     }
     
 }

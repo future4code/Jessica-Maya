@@ -1,7 +1,6 @@
 import { LikeByIdPostDataBase } from "../data/LikeDataBase"
 import { likePost } from "../model/LikePost"
 import { Authenticator } from "../services/Authenticator"
-import { IdGenerator } from "../services/IdGenerator"
 
 export class likePostByIdBusiness {
 
@@ -21,9 +20,6 @@ export class likePostByIdBusiness {
         if(userPost == null) {
             throw new Error("Informe um token válido!")
         }
-
-        // const idGeneretor = new IdGenerator()
-        // const id = idGeneretor.generate()
 
         await new LikeByIdPostDataBase().insertLikePost({
             userId: userPost.id,

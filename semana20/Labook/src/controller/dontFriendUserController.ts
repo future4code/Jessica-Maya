@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { FriendsUserDataBase } from "../data/friendsUserDataBase"
+import { dontFriendUserBusiness } from "../business/dontFriendUserBusiness"
 
 export const dontFriendUserController = async (
     req: Request, 
@@ -8,13 +8,9 @@ export const dontFriendUserController = async (
         try {
             
             const { userFriend, beAFriendOfTheUser } = req.body
-            const token = req.headers.authorization
+            const token = req.headers.authorization as string
 
-            if (!token) {
-                res.status(422).send("Informe um token válido!")
-            }
-
-            const dontFriend = await new FriendsUserDataBase().dontFriendsUser({userFriend, beAFriendOfTheUser})
+            const dontFriend = await new dontFriendUserBusiness().dontFriend({userFriend, beAFriendOfTheUser}, token)
 
             res.status(200).send({
                 message: `Voce deixou de ser amigo do usuário ${beAFriendOfTheUser}`,

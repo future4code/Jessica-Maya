@@ -14,6 +14,21 @@ export class UserBusiness {
         ) {
             throw new Error("Preencha os campos 'name', 'email' e 'password'")
         }
+        
+        if (!user.email.includes("@") || !user.email.includes(".com")) {
+            throw new Error('Formato de e-mail inválido. O e-mail deve conter "@" e ".com" ');
+        }
+
+        if(!user.password || user.password.length < 6) {
+            throw new Error("Senha inválida por favor a senha deve ter 6 caractres ou mais");
+        }
+
+        const userDataBase = new UserDataBase()
+        const userEmail = await userDataBase.findUserEmail(user.email)
+
+        if(userEmail) {
+            throw new Error("Esse email já está cadastrado")
+        }
 
         const idGeneretor = new IdGenerator()
         const id = idGeneretor.generate()

@@ -8,8 +8,9 @@ export const commentPostController = async (
     try {
 
         const {userId, postId, comment} = req.body
+        const token = req.headers.authorization as string
 
-        await new createPostComment().createComment({userId, postId, comment})
+        await new createPostComment().createComment({userId, postId, comment}, token)
 
         res.status(200).send({
             message: "Comentário feito com sucesso",

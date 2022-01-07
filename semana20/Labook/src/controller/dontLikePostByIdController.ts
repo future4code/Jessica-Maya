@@ -7,13 +7,13 @@ export const dontLikePostByIdController = async (
     ) => {
         try {
             const { userId, postId } = req.body
-            const token = req.headers.authorization
+            const token = req.headers.authorization as string
 
             if (!token) {
                 res.status(422).send("Informe um token válido!")
             }
 
-            const dontLikePost = await new dontLikePostByIdBusiness().dontLikeById({userId, postId})
+            const dontLikePost = await new dontLikePostByIdBusiness().dontLikeById({userId, postId}, token)
 
             res.status(200).send({
                 message: `Você descurtiu o post`,

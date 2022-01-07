@@ -8,7 +8,8 @@ export const postByIdController = async (
             try {
 
                 const {id} = req.params
-                const post = await new postByIdBusiness().postById(id)
+                const token = req.headers.authorization as string
+                const post = await new postByIdBusiness().postById(id, token)
 
                 res.status(200).send(post)
 

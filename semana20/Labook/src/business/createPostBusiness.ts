@@ -1,10 +1,11 @@
 import { PostDataBase } from "../data/PostDataBase"
+import { Authenticator } from "../services/Authenticator"
 import { IdGenerator } from "../services/IdGenerator"
 
 
 export class createPostBusiness {
 
-    createPost = async(post: any) => {
+    createPost = async(post: any, token: string) => {
         if(
             !post.photo ||
             !post.description ||
@@ -13,6 +14,17 @@ export class createPostBusiness {
             !post.userId
         ) {
             throw new Error("Preencha os campos 'photo', 'description', 'creationData', 'type' e 'userId' ")
+        }
+
+        
+        if (!token) {
+            throw new Error("Informe um token válido!")
+        }
+
+        const userToken = new Authenticator().getTokenData(token)
+
+        if(userToken == null) {
+            throw new Error("Você precisa de um token válido!")
         }
 
         const idGeneretor = new IdGenerator()
