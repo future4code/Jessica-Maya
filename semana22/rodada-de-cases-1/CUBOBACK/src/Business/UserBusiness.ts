@@ -15,6 +15,7 @@ export class UserBusiness {
             throw new MissingFieldsToComplet()
         }
 
+
         const user: UserInsert = {
             id: IdGenerator.generate(),
             ...input
