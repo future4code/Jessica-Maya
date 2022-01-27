@@ -1,0 +1,12 @@
+{
+  "name": "recursividade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc --outFile index.js index.ts && node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
