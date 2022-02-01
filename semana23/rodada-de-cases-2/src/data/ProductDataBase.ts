@@ -49,10 +49,8 @@ export class ProductDataBase extends BaseDataBase {
         
            
         const product = await this.getConnection()
-            .select("amaro_product.id as id do produto","amaro_product.name as nome do produto",
-           "amaro_product.size as tamanho", "amaro_product.price as preço", "amaro_tags.name")
-           .innerJoin("amaro_product_tags", "amaro_product.id","amaro_product_tags.id_product")
-           .innerJoin("amaro_tags", "amaro_tags.id", "amaro_product_tags.id_tags")
+            .select(["amaro_product.id as id do produto","amaro_product.name as nome do produto",
+           "amaro_product.size as tamanho", "amaro_product.price as preço"])
            .from(ProductDataBase.TABLE_NAME)
            .where({"amaro_product.name": name})
             

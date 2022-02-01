@@ -28,9 +28,7 @@ export class TagsDataBase extends BaseDataBase {
         try {
         
         const tag = await this.getConnection()
-        .select("amaro_product.name as nome produto", "amaro_tags.name as nome da tag")
-      .innerJoin("amaro_product_tags", "amaro_tags.id", "amaro_product_tags.id_tags")
-      .innerJoin("amaro_product", "amaro_product.id", "amaro_product_tags.id_product")
+        .select(["amaro_tags.id as id ", "amaro_tags.name as nome da tag"])
       .from(TagsDataBase.TABLE_NAME)
       .where({"amaro_tags.name": name})
             
