@@ -6,13 +6,13 @@ export class ProductController {
     async createProduct(req: Request, res: Response) {
         try {
 
-            const { name, tags} = req.body
+            const { name, size, price } = req.body
 
             const input: ProductInput = {
                 name,
-                tags: JSON.stringify(tags)
+                size,
+                price
             }
-
 
             const productBusiness = new ProductBusiness()
             const productMessage = await productBusiness.createProduct(input)
@@ -20,6 +20,25 @@ export class ProductController {
 
             res.status(200).send({productMessage})
             
+        } catch (error) {
+            if(error instanceof Error) {
+                res.status(400).json({message: error.message})
+            }else {
+                res.status(400).json({message: "Unexpected Error"})
+            }
+        }
+    }
+
+    async getProductByNameController(req: Request, res: Response) {
+        try {
+            const { name } = req.params
+           
+        const productByNameBusiness = new ProductBusiness()
+        const productName  = await productByNameBusiness.getProductByNameBusiness(name)
+
+       
+        res.status(200).send({productName})
+
         } catch (error) {
             if(error instanceof Error) {
                 res.status(400).json({message: error.message})

@@ -1,6 +1,6 @@
 import { app } from "./app";
-import { userRouter } from "./Router/Router";
+import { productRouter, productTagsIdRouter, tagsRouter } from "./Router/Router";
 
-
-
-app.use("/product", userRouter)
+app.use("/product", productRouter)
+app.use("/tag", tagsRouter)
+app.use("/product/tag", productTagsIdRouter)

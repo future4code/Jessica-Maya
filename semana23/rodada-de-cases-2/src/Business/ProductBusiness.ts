@@ -7,27 +7,51 @@ export class ProductBusiness {
 
     async createProduct(input: ProductInput) {
         
-        if(!input.name || !input.tags) {
+        if(!input.name || !input.size ||!input.price) {
             throw new MissingFieldsToComplet()
         }
 
             const product: ProductInsert = {
             id: IdGenerator.generate(),
             name: input.name,
-            tags: input.tags
+            size: input.size,
+            price: input.price
         }
             
         const productDataBase = new ProductDataBase()
 
-        const newProduct = await productDataBase.insertProduct(product)
-        
-        const id  = await productDataBase.findProductById(product.id)
+        const productName  = await productDataBase.productValidation(product.name)
 
-        if(id) {
+        if(productName) {
             throw new Error("Product já cadastrado")
         }
 
+        const newProduct = await productDataBase.insertProduct(product)
+
         return newProduct
     }
+
+    async getProductByNameBusiness(name: string) {
+
+        if(!name) {
+            throw new Error("Fill the name in params")
+        }
+        
+        const productTagDataBase = new ProductDataBase()
+        const result =  await productTagDataBase.findProductByName(name)
+
+        const produtos = {
+            idDoProduto: result[0]["id do produto"],
+            nomeDoProduto: result[0]["nome do produto"],
+            preco: result[0]["preço"],
+            tamanho: result[0]["tamanho"],
+            tag: result.map((index) =>{
+                return {name: index.name, }
+            })
+        }
+        
+        return produtos
+    }
+
 
 }
