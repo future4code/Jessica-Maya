@@ -3,7 +3,9 @@
    "version": "1.0.0",
    "main": "index.js",
    "scripts": {
-      "start": "tsc && node build/index.js"
+      "Exercises1": "tsc && node build/findMissingNumber/index.js",
+      "Exercises2": "tsc && node build/indexOf/index.js",
+      "Exercises3": "tsc && node build/ChecaParantesesValidos/index.js"
    },
    "license": "ISC",
    "devDependencies": {
