@@ -10,8 +10,12 @@ export class BuyerBusiness {
             throw new MissingFieldsToComplet()
         }
 
-        if(!input.email.includes("@") || !input.email.includes(".")) {
+        if(!input.email.includes("@") || !input.email.includes(".com")) {
             throw new Error("Invalid email, missing @ or .com")
+        }
+
+        if(input.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4") && input.cpf.length > 14 ){
+            throw new Error("Invalid cpf, to be valid is 000.000.000-00")
         }
 
         const buyer: BuyerInputDTO = {
@@ -20,10 +24,10 @@ export class BuyerBusiness {
         }
 
         const buyerDataBase = new BuyerDataBase()
-        const buyerId = await buyerDataBase.buyerFindById(buyer.id)
+        const buyerId = await buyerDataBase.buyerFindByCpf(input.cpf)
 
         if(buyerId) {
-            throw new Error("Customer is already registered")
+            throw new Error("Buyer is already registered")
         }
 
         const newBuyer = await buyerDataBase.insertBuyer(buyer)

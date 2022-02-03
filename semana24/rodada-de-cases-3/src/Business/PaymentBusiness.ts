@@ -4,14 +4,15 @@ import { PaymentInputDTO, PaymentInsert, TYPE } from "../Model/Payment"
 import IdGenerator from "../Services/IdGenerator"
 
 export class PaymentBusiness {
+    
     async insertPayment(input: PaymentInsert) {
         
         if(!input.amount || !input.type || !input.id_client || !input.id_buyer) {
             throw new MissingFieldsToComplet()
         }
 
-
         const paymentDataBase = new PaymentDataBase()
+        const numberSlip = Math.floor(Math.random() * 6553654324755658640).toString()
 
         if(input.type === TYPE.CREDITCARD) {
 
@@ -30,13 +31,18 @@ export class PaymentBusiness {
                 id_buyer: input.id_buyer
             }
 
+            if(input.card_number.toString().length > 16) {
+                throw new Error("Invalid card number")
+            }
+
             if(input.card_cvv.toString().length > 3) {
                 throw new Error("The card_cvv has only 3 numbers")
             }
 
             await paymentDataBase.insertPayment(paymentCard)
 
-           return "Purchase made successfully, we'll send you more information about the purchase by email."
+           return `Purchase made successfully, we send more information about the purchase by 
+           e-mail, code of the purchase made is ${numberSlip}`
         }
 
 
@@ -50,11 +56,17 @@ export class PaymentBusiness {
             }
 
             await paymentDataBase.insertPayment(paymentBank)
-
-           const numberSlip = Math.floor(Math.random() * 65536543247556586121540).toString()
             
-           return numberSlip
+           return "Purchase made successfully, we'll send you more information about the purchase by email, follow the bank slip number " + (`23427.435321.2353432.${numberSlip}`)
         }
 
+    }
+
+    async getPaymentIdBusiness(id: string) {
+
+        const paymentDataBase = new PaymentDataBase()
+        const result = await paymentDataBase.purchaseInformationId(id)
+
+        return result 
     }
 }

@@ -21,11 +21,11 @@ export class BuyerDataBase extends BaseDataBase {
         }
     }
 
-    async buyerFindById(id: string){
+    async buyerFindByCpf(cpf: string){
         try {
             const buyer = await this.getConnection()
             .select("*")
-            .where({id: id})
+            .where({cpf: cpf})
             .from(BuyerDataBase.TABLE_NAME)
 
             return buyer[0]

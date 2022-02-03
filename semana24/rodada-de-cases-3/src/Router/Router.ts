@@ -12,6 +12,7 @@ const clientController = new ClientController()
 const buyerController = new BuyerController()
 const paymentController = new PaymentController()
 
-clientRouter.post("/create", clientController.createClient)
-buyerRouter.post("/create", buyerController.createBuyer)
-paymentRouter.post("/create", paymentController.createPayment)
+paymentRouter.get("/:id", paymentController.getPaymentId) // Endpoint pega compras pelo id do payment
+clientRouter.post("/create", clientController.createClient) // Endpoint cadastrar o cliente "Loja"
+buyerRouter.post("/create", buyerController.createBuyer) // Endpoint Cadastrar dados da compra do usuário para a "Loja"
+paymentRouter.post("/create", paymentController.createPayment) // Endpoint Registrar compra ou cartão de crédito ou Boleto Bancário

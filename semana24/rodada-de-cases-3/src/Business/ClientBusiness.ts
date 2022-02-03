@@ -10,6 +10,10 @@ export class ClientBusiness {
             throw new MissingFieldsToComplet()
         }
 
+        if(input.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5") && input.cnpj.length > 18){
+            throw new Error("Invalid cnpj, to be valid is 00.000.000/0000-00")
+        }
+
         const client: ClientInputDTO = {
             id: IdGenerator.generate(),
             ...input
@@ -19,7 +23,7 @@ export class ClientBusiness {
         const clientCnpj = await clientDataBase.clientFindByCnpj(input.cnpj)
 
         if(clientCnpj) {
-            throw new Error("Customer is already registered")
+            throw new Error("Client is already registered")
         }
 
         const newClient = await clientDataBase.insertClient(client)
