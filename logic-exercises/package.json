@@ -5,7 +5,8 @@
    "scripts": {
       "Exercises1": "tsc && node build/findMissingNumber/index.js",
       "Exercises2": "tsc && node build/indexOf/index.js",
-      "Exercises3": "tsc && node build/ChecaParantesesValidos/index.js"
+      "Exercises3": "tsc && node build/ChecaParantesesValidos/index.js",
+      "Exercises4": "tsc && node build/MaiorPrefixoComum/index.js"
    },
    "license": "ISC",
    "devDependencies": {
