@@ -8,7 +8,8 @@
       "Exercises3": "tsc && node build/ChecaParantesesValidos/index.js",
       "Exercises4": "tsc && node build/MaiorPrefixoComum/index.js",
       "Exercises5": "tsc && node build/LadraoDeCasas/index.js",
-      "Exercises6": "tsc && node build/NumeroSolitario/index.js"
+      "Exercises6": "tsc && node build/NumeroSolitario/index.js",
+      "Exercises7": "tsc && node build/Anagrama/index.js"
    },
    "license": "ISC",
    "devDependencies": {
