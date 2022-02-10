@@ -9,8 +9,8 @@ export class TourDay {
        private start_time: string,
        private end_time: string,
        private status: string,
-       private price: string,
-       private pet_id: string,
+       private price: number,
+       private pet_id: string[],
     ) {
         
     }
@@ -33,11 +33,11 @@ export interface TourInputDTO {
        longitude: string,
        start_time: string,
        end_time: string,
-       status: string,
-       price: string,
-       pet_id: string,
+       pet_id: string[],
 }
 
 export interface TourInsert extends TourInputDTO {
-    id: string
+    id: string,
+    status: string,
+    price: number
 }

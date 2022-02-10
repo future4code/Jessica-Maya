@@ -1,14 +1,14 @@
 import { TourInsert } from "../model/Tour"
 import { BaseDataBase } from "./BaseDataBase"
 
-export class TourDayDataBase extends BaseDataBase {
-    private static TABLE_NAME = "dogWalking_tourDay"
+export class TourDataBase extends BaseDataBase {
+    private static TABLE_NAME = "dogWalking_tour"
 
-    async insertTour (tour: TourInsert){
+    async insertTourDay (tour: TourInsert){
        try {
            await this.getConnection()
            .insert(tour)
-           .into(TourDayDataBase.TABLE_NAME)
+           .into(TourDataBase.TABLE_NAME)
        } catch (error) {
 
         if(error instanceof Error) {

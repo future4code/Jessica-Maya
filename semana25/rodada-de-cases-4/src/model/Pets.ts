@@ -3,7 +3,7 @@ export class Pets {
         private id: string,
         private name_owner: string,
         private email: string,
-        private name_pet: string[]
+        private name_pet: string
     ) {}
 
     static petModel(pet: Pets) {
@@ -14,7 +14,7 @@ export class Pets {
 export interface PetInputDTO {
     name_owner: string,
     email: string,
-    name_pet: string[]
+    name_pet: string
 }
 
 export interface PetInsert extends PetInputDTO {

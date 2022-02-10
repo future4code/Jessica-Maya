@@ -17,4 +17,22 @@ export class PetDataBase extends BaseDataBase {
         }
       }
     }
+
+    async findPetByEmail (email: string): Promise<PetInsert>{
+        try {
+            const [petByEmail] = await this.getConnection()
+            .select("*")
+            .where({email})
+            .from(PetDataBase.TABLE_NAME)
+
+            return petByEmail
+            
+        } catch (error) {
+         if(error instanceof Error) {
+             throw new Error(error.message)
+         } else {
+             throw new Error("An unexpected database error occurred!")
+         }
+       }
+     }
 }
