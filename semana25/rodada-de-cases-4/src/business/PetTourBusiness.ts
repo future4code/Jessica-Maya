@@ -31,17 +31,14 @@ export class PetTourBusiness {
         }
 
         let status = ""
-        const date = new Date()
-
-        if(new Date(input.date_walk) > date || new Date(input.start_time) > date)  {
-            status = "Esperando o passeio chegar"
-        } 
-        if(new Date(input.date_walk) || new Date(input.start_time) ) {
-            status = "Passeando"
-        }
-        if(new Date(input.date_walk) < date || new Date(input.start_time) < date) {
-            status = "Seu passeio já passou, vamos marcar outro?"
-        }
+        let date = new Date().toISOString()
+    if(new Date(input.date_walk).toISOString() > date) {
+        status = "Esperando o passeio chegar"
+    } else if(new Date(input.date_walk).toISOString() === new Date().toISOString()) {
+        status = "Hoje é dia de passeio"
+    }else if(new Date(input.date_walk).toISOString() < date) {
+        status = "Seu passeio já passou, vamos marcar outro?"
+    }
 
          const tour  : TourInsert = {
             id: IdGenerator.generate(),
@@ -57,5 +54,13 @@ export class PetTourBusiness {
 
         return "Walk with your pet successfully registered on the date:  "+ tour.date_walk
         
+    }
+
+    getAllDateTourBusiness = async(date: string, size: number, offset: number) => {
+        
+        const petTourDataBase = new TourDataBase()
+        const result = await petTourDataBase.getPetTour(date, size, offset)
+
+        return result
     }
 }

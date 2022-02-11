@@ -8,5 +8,6 @@ export const tourRouter = Router()
 const petController = new PetController()
 const tourController = new PetTourController()
 
+tourRouter.get("/tour", tourController.getAllDateTourController)
 petRouter.post("/pet", petController.createPetController)
 tourRouter.post("/tour", tourController.createPetTourController)

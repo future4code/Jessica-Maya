@@ -1,8 +1,10 @@
+import formatDate from "../services/dataFormat";
+
 export class TourDay {
     
     constructor(
        private id: string,
-       private date_walk: string,
+       private date_walk: Date,
        private duration: string,
        private latitude: string,
        private longitude: string,
